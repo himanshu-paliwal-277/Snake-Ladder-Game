@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Ladder Game</title>
+    <!-- Tailwind css -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- website logo -->
+    <link
+      rel="shortcut icon"
+      href="./Assets/home_page_logo.png"
+      type="image/x-icon"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    class="w-full h-screen overflow-hidden flex justify-center items-center sm:bg-gradient-to-r bg-gradient-to-b from-cyan-500 to-blue-500"
+  >
+    <!-- Start window -->
+    <div
+      id="start_window"
+      class="absolute w-full h-screen bg-gradient-to-b from-blue-400 to-purple-400 z-20 flex flex-col justify-center items-center"
+    >
+      <img
+        id="home_page_image"
+        class="mb-8"
+        src="./Assets/home_page_logo.png"
+        alt="game logo"
+      />
+      <!-- Progress bar -->
+      <div
+        id="progress_bar_div"
+        class="w-1/3 h-5 opacity-0 bg-white bg-opacity-50 rounded-full overflow-hidden my-2"
+      >
+        <div
+          id="progress_bar"
+          class="bg-gradient-to-r to-green-400 from-green-600 text-sm text-gray-200 font-bold flex justify-center items-center h-full"
+          style="width: 0%"
+        >
+          <span id="progress_bar_value" class="">0</span>%
+        </div>
+      </div>
+      <button
+        id="start_button"
+        class="bg-orange-500 px-8 py-3 rounded-lg mt-6 hover:scale-110 active:scale-100 duration-150"
+      >
+        <svg
+          class="w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 384 512"
+        >
+          <path
+            fill="#ffffff"
+            d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"
+          />
+        </svg>
+      </button>
+    </div>
+    <!-- Logo -->
+    <div class="absolute top-6 left-6">
+      <img class="sm:w-28 w-20" src="./Assets/home_page_logo.png" alt="logo" />
+    </div>
+    <section
+      class="bg-gradient-to-tr from-indigo-500 to-indigo-600 rounded-lg sm:p-12 p-10 sm:scale-100 scale-[0.7]"
+    >
+      <!-- snake ladder game board -->
+      <div id="container" class="bg-transparent relative text-base gap-[0px]">
+        <!-- Row 10 -->
+        <div
+          class="bg-yellow-200 text-2xl font-bold w-12 h-12 flex justify-center items-center"
+        >
+          100
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          99
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          98
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          97
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          96
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          95
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          94
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          93
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          92
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          91
+        </div>
+        <!-- Row 9 -->
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          81
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          82
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          83
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          84
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          85
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          86
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          87
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          88
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          89
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          90
+        </div>
+        <!-- Row 8 -->
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          80
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          79
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          78
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          77
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          76
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          75
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          74
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          73
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          72
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          71
+        </div>
+        <!-- Row 7 -->
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          61
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          62
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          63
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          64
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          65
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          66
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          67
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          68
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          69
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          70
+        </div>
+        <!-- Row 6 -->
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          60
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          59
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          58
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          57
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          56
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          55
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          54
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          53
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          52
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          51
+        </div>
+        <!-- Row 5 -->
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          41
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          42
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          43
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          44
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          45
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          46
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          47
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          48
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          49
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          50
+        </div>
+        <!-- Row 4 -->
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          40
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          39
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          38
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          37
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          36
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          35
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          34
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          33
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          32
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          31
+        </div>
+        <!-- Row 3 -->
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          21
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          22
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          23
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          24
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          25
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          26
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          27
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          28
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          29
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          30
+        </div>
+        <!-- Row 2 -->
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          20
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          19
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          18
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          17
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          16
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          15
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          14
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          13
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          12
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          11
+        </div>
+        <!-- Row 1 -->
+        <div
+          class="bg-cyan-200 text-2xl font-bold w-12 h-12 flex justify-center items-center"
+        >
+          1
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          2
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          3
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          4
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          5
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          6
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          7
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          8
+        </div>
+        <div class="bg-cyan-200 w-12 h-12 flex justify-center items-center">
+          9
+        </div>
+        <div class="bg-yellow-200 w-12 h-12 flex justify-center items-center">
+          10
+        </div>
+
+        <!-- Players -->
+        <!-- Player 1 -->
+        <div
+          id="player_1"
+          class="absolute z-[11] duration-300 m-[10px] w-8 h-8 rounded-full text-sm text-white flex justify-center items-center"
+        >
+          <svg
+            id="player_1_selected_svg"
+            class="selected_player w-6 absolute top-[-40px]"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <path
+              d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+            />
+          </svg>
+          <img
+            class="w-6"
+            src="./Assets/player_1_image.png"
+            alt="player_1 image"
+          />
+        </div>
+        <!-- Player 2 -->
+        <div
+          id="player_2"
+          class="absolute z-10 duration-300 m-[10px] w-8 h-8 rounded-full text-sm text-white flex justify-center items-center"
+        >
+          <svg
+            id="player_2_selected_svg"
+            class="selected_player hidden w-6 absolute top-[-40px]"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <path
+              d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+            />
+          </svg>
+          <img
+            class="w-6"
+            src="./Assets/player_2_image.png"
+            alt="player_2 image"
+          />
+        </div>
+
+        <!-- Snakes -->
+        <img
+          class="absolute w-16 rotate-[10deg] bottom-5 right-6"
+          src="./Assets/Snake 1.png"
+          alt="snake 1 image"
+        />
+        <img
+          class="absolute w-32 rotate-[10deg] bottom-14 left-[230px]"
+          src="./Assets/Snake 2.png"
+          alt="snake 2 image"
+        />
+        <img
+          class="absolute w-20 rotate-[0deg] top-3 right-2"
+          src="./Assets/Snake 3.png"
+          alt="snake 3 image"
+        />
+        <img
+          class="absolute w-36 top-4 left-[10px]"
+          style="transform: rotateZ(0deg)"
+          src="./Assets/Snake 4.png"
+          alt="snake 4 image"
+        />
+        <img
+          class="absolute w-24 bottom-3 left-1"
+          src="./Assets/Snake 5.png"
+          alt="snake 5 image"
+        />
+        <img
+          class="absolute w-[110px] bottom-[170px] right-[76px] rotate-[10deg]"
+          src="./Assets/Snake 6.png"
+          alt="snake 6 image"
+        />
+        <img
+          class="absolute w-20 top-[60px] left-[180px] rotate-[-30deg]"
+          src="./Assets/Snake 7.png"
+          alt="snake 7 image"
+        />
+
+        <!-- Ladder -->
+        <img
+          class="absolute h-[160px] bottom-4 left-32"
+          src="./Assets/ladder_image_1.png"
+          alt="ladder 1"
+        />
+        <img
+          class="absolute h-[140px] bottom-12 right-10"
+          src="./Assets/ladder_image_2.png"
+          alt="ladder 2"
+        />
+        <img
+          class="absolute h-[160px] bottom-[120px] left-7"
+          src="./Assets/ladder_image_1.png"
+          alt="ladder 3"
+        />
+        <img
+          class="absolute h-[115px] bottom-[220px] right-[200px] rotate-[-20deg]"
+          src="./Assets/ladder_image_2.png"
+          alt="ladder 4"
+        />
+        <img
+          class="absolute h-[110px] top-[75px] right-0"
+          src="./Assets/ladder_image_1.png"
+          alt="ladder 5"
+        />
+        <img
+          class="absolute h-[180px] top-[5px] left-[0px] rotate-12"
+          src="./Assets/ladder_image_1.png"
+          alt="ladder 6"
+        />
+
+        <!-- Trophy image -->
+        <img
+          class="absolute w-10 left-[-30px] top-[-10px]"
+          src="./Assets/trophy_image.png"
+          alt="trophy_image"
+        />
+      </div>
+    </section>
+
+    <!-- dice -->
+    <div
+      id="player_chance"
+      class="text-xl text-white font-semibold shadow-xl absolute px-7 py-3 bg-purple-600 sm:right-5 sm:bottom-52 right-52 bottom-20 rounded-lg"
+    >
+      Player 1 Turn
+    </div>
+    <div
+      class="sm:w-32 w-24 p-5 absolute right-10 sm:bottom-8 bottom-12 rounded-lg flex flex-col items-center"
+      style="box-shadow: 0px 0px 12px rgb(0, 195, 255)"
+    >
+      <img
+        id="dice_image"
+        class="w-full rounded-xl"
+        src="./Assets/dice number 1.jpg"
+        alt="dice animation"
+      />
+      <!-- <span id="dice_number_span" class="my-4">2</span> -->
+      <button
+        id="roll_dice_button"
+        class="absolute w-full h-full rounded-xl hover:scale-105 active:scale-100"
+      ></button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="./script.js"></script>
+  </body>
+</html>
