@@ -1,0 +1,49 @@
+#container {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+}
+
+#player_1 {
+  bottom: 0px;
+  left: -42px;
+}
+
+#player_2 {
+  bottom: 0px;
+  left: -50px;
+}
+
+.selected_player {
+  animation: up_down 0.8s linear infinite;
+}
+
+@keyframes up_down {
+  0% {
+    top: -40px;
+  }
+  50% {
+    top: -48px;
+  }
+  100% {
+    top: -40px;
+  }
+}
+
+#home_page_image {
+  animation: small_big_size 2s infinite;
+  width: 250px;
+  transform: scale(1);
+}
+
+@keyframes small_big_size {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
