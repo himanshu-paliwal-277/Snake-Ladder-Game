@@ -38,6 +38,12 @@ let progress_bar_width = 0;
 let start_button = document.getElementById("start_button");
 let start_window = document.getElementById("start_window");
 
+// congratulations_window
+let congratulations_window = document.getElementById("congratulations_window");
+let newGame_button = document.getElementById("newGame_button");
+let exit_button = document.getElementById("exit_button");
+let winner_player = document.getElementById("winner_player");
+
 // start_button click
 start_button.addEventListener("click", () => {
   progress_bar_div.classList.remove("opacity-0");
@@ -56,6 +62,7 @@ start_button.addEventListener("click", () => {
 });
 
 roll_dice_button.addEventListener("click", () => {
+  congratulations_window.classList.remove("hidden");
   // dice sound when dice is rolling
   dice_sound.play();
   let dice_number = Math.random() * 6 + 1;
@@ -89,29 +96,31 @@ roll_dice_button.addEventListener("click", () => {
     }
     if (player_1_chance) {
       player_1_chance = false;
-      player_1_sum = move_player(dice_number, player_1, player_1_sum);
+      player_1_sum = move_player(dice_number, player_1, player_1_sum, 1);
       player_chance.innerText = "Player 2 Turn";
       player_2_selected_svg.classList.remove("hidden");
       player_1_selected_svg.classList.add("hidden");
     } else {
       player_1_chance = true;
-      player_2_sum = move_player(dice_number, player_2, player_2_sum);
+      player_2_sum = move_player(dice_number, player_2, player_2_sum, 2);
       player_chance.innerText = "Player 1 Turn";
       player_2_selected_svg.classList.add("hidden");
       player_1_selected_svg.classList.remove("hidden");
     }
-    roll_dice_button.disabled = false;
+    setTimeout(() => {
+      roll_dice_button.disabled = false;
+    }, 1000);
   }, 1300);
 });
 
-function move_player(dice_number, player, player_sum) {
+function move_player(dice_number, player, player_sum, player_win) {
   // moving sound when player move
   moving_player_sound.play();
 
   let current_position = player_sum;
   player_sum += dice_number;
   let x = player_sum;
-  console.log("x = ", x);
+  // console.log("x = ", x);
   if (player_sum <= 10) {
     player.style.left = `${x * 50 - 50}px`;
     // If player on ladder 1 then change the player_sum
@@ -411,13 +420,51 @@ function move_player(dice_number, player, player_sum) {
     }
   } else if (player_sum === 100) {
     player.style.left = `0px`;
-    alert("win");
+    congratulations_window.classList.remove("hidden");
+    if(player_win === 1){
+      winner_player.innerText = "Player 1";
+    }
+    else {
+      winner_player.innerText = "Player 2";
+    }
   } else {
     player_sum -= dice_number;
     if (player_sum === 100) {
       player.style.left = `0px`;
-      alert("WIN");
+      congratulations_window.classList.remove("hidden");
+      if(player_win === 1){
+        winner_player.innerText = "Player 1";
+      }
+      else {
+        winner_player.innerText = "Player 2";
+      }
     }
   }
   return player_sum;
+}
+
+
+// newGame_button
+newGame_button.addEventListener("click",() => {
+  congratulations_window.classList.add("hidden");
+  reset_game();
+})
+
+// exit_button
+exit_button.addEventListener("click",() => {
+  congratulations_window.classList.add("hidden");
+  reset_game();
+  start_window.classList.remove("hidden");
+  progress_bar_div.classList.add("opacity-0");
+  progress_bar_width = 0;
+})
+
+// reset_game function 
+function reset_game() {
+  player_1_sum = 0;
+  player_2_sum = 0;
+  player_1.style.left = `-50px`;
+  player_1.style.bottom = `0px`;
+  player_2.style.left = `-50px`;
+  player_2.style.bottom = `0px`;
 }

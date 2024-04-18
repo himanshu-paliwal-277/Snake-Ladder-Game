@@ -32,7 +32,7 @@
       <!-- Progress bar -->
       <div
         id="progress_bar_div"
-        class="w-1/3 h-5 opacity-0 bg-white bg-opacity-50 rounded-full overflow-hidden my-2"
+        class="sm:w-1/3 w-2/3 h-5 opacity-0 bg-white bg-opacity-50 rounded-full overflow-hidden my-2"
       >
         <div
           id="progress_bar"
@@ -63,7 +63,7 @@
       <img class="sm:w-28 w-20" src="./Assets/home_page_logo.png" alt="logo" />
     </div>
     <section
-      class="bg-gradient-to-tr from-indigo-500 to-indigo-600 rounded-lg sm:p-12 p-10 sm:scale-100 scale-[0.7]"
+      class="bg-gradient-to-tr from-indigo-500 to-indigo-600 rounded-lg sm:p-12 p-10 sm:scale-100 scale-[0.53]"
     >
       <!-- snake ladder game board -->
       <div id="container" class="bg-transparent relative text-base gap-[0px]">
@@ -508,12 +508,12 @@
     <!-- dice -->
     <div
       id="player_chance"
-      class="text-xl text-white font-semibold shadow-xl absolute px-7 py-3 bg-purple-600 sm:right-5 sm:bottom-52 right-52 bottom-20 rounded-lg"
+      class="text-xl text-white font-semibold shadow-xl absolute px-7 py-3 bg-purple-600 sm:right-5 sm:bottom-52 right-36 sm:scale-100 scale-75 bottom-16 rounded-lg"
     >
       Player 1 Turn
     </div>
     <div
-      class="sm:w-32 w-24 p-5 absolute right-10 sm:bottom-8 bottom-12 rounded-lg flex flex-col items-center"
+      class="sm:w-32 w-20 sm:p-5 p-3 absolute right-10 sm:bottom-8 bottom-12 rounded-lg flex flex-col items-center"
       style="box-shadow: 0px 0px 12px rgb(0, 195, 255)"
     >
       <img
@@ -528,6 +528,34 @@
         class="absolute w-full h-full rounded-xl hover:scale-105 active:scale-100"
       ></button>
     </div>
+
+    <!-- congratulations window -->
+    <div
+    id="congratulations_window"
+    class="hidden absolute w-full h-screen flex justify-center items-center"
+    style="background-color: rgba(0, 0, 0, 0.411);"
+  >
+    <div
+      class="lg:w-[40%] sm:w-[70%] w-[90%] sm:h-[60vh] h-[40vh] sm:mb-0 mb-12 bg-gradient-to-r from-cyan-300 to-green-300 shadow-2xl rounded-2xl flex flex-col justify-center items-center"
+    >
+      <h1 class="sm:text-4xl text-2xl mb-4">Congratulations</h1>
+      <h1 class="sm:text-3xl text-xl opacity-70">
+        <span id="winner_player">Player 1</span> is Winner
+      </h1>
+      <button
+        id="newGame_button"
+        class="relative z-10 px-6 py-2 bg-green-500 hover:bg-green-600 active:bg-green-500 rounded-lg text-white mt-10 hover:scale-105 active:scale-100 duration-150 sm:text-xl text-base sm:w-[30%] w-[40%]"
+      >
+        New Game
+      </button>
+      <button
+        id="exit_button"
+        class="relative z-10 px-6 py-2 bg-red-500 hover:bg-red-600 active:bg-red-500 rounded-lg text-white mt-3 hover:scale-105 active:scale-100 duration-150 sm:text-xl text-base sm:w-[30%] w-[40%]"
+      >
+        Exit
+      </button>
+    </div>
+  </div>
 
     <!-- JavaScript -->
     <script src="./script.js"></script>
