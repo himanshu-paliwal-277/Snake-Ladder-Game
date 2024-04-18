@@ -62,7 +62,6 @@ start_button.addEventListener("click", () => {
 });
 
 roll_dice_button.addEventListener("click", () => {
-  congratulations_window.classList.remove("hidden");
   // dice sound when dice is rolling
   dice_sound.play();
   let dice_number = Math.random() * 6 + 1;
