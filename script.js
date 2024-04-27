@@ -420,10 +420,9 @@ function move_player(dice_number, player, player_sum, player_win) {
   } else if (player_sum === 100) {
     player.style.left = `0px`;
     congratulations_window.classList.remove("hidden");
-    if(player_win === 1){
+    if (player_win === 1) {
       winner_player.innerText = "Player 1";
-    }
-    else {
+    } else {
       winner_player.innerText = "Player 2";
     }
   } else {
@@ -431,10 +430,9 @@ function move_player(dice_number, player, player_sum, player_win) {
     if (player_sum === 100) {
       player.style.left = `0px`;
       congratulations_window.classList.remove("hidden");
-      if(player_win === 1){
+      if (player_win === 1) {
         winner_player.innerText = "Player 1";
-      }
-      else {
+      } else {
         winner_player.innerText = "Player 2";
       }
     }
@@ -442,23 +440,22 @@ function move_player(dice_number, player, player_sum, player_win) {
   return player_sum;
 }
 
-
 // newGame_button
-newGame_button.addEventListener("click",() => {
+newGame_button.addEventListener("click", () => {
   congratulations_window.classList.add("hidden");
   reset_game();
-})
+});
 
 // exit_button
-exit_button.addEventListener("click",() => {
+exit_button.addEventListener("click", () => {
   congratulations_window.classList.add("hidden");
   reset_game();
   start_window.classList.remove("hidden");
   progress_bar_div.classList.add("opacity-0");
   progress_bar_width = 0;
-})
+});
 
-// reset_game function 
+// reset_game function
 function reset_game() {
   player_1_sum = 0;
   player_2_sum = 0;
