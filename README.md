@@ -4,7 +4,7 @@ Snake Ladder is a responsive web-based adaptation of the classic board game, des
 
 ## Live Demo
 
-You can play the live version here: [https://himanshu-paliwal-277.github.io/Snake-Ladder-Game/](#)
+You can play the live version here: [Snake Ladder Game](https://himanshu-paliwal-277.github.io/Snake-Ladder-Game/)
 
 ## Features
 
